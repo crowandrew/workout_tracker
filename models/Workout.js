@@ -1,16 +1,16 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
 const WorkoutSchema = new Schema({
     name: {
         type: String,
-        required: "Please enter a name for this workout"
+        required: 'Please enter a name for this workout'
     },
     exercises: [
         {
             type: Schema.Types.ObjectId,
-            ref: "Exercise"
+            ref: 'Exercise'
         }
     ],
     date: {
@@ -20,6 +20,6 @@ const WorkoutSchema = new Schema({
     }
 });
 
-const Workout = mongoose.model("Workout", WorkoutSchema);
+const Workout = mongoose.model('Workout', WorkoutSchema);
 
 module.exports = Workout;
