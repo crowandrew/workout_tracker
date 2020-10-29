@@ -2,7 +2,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 
-const db = require("./models");
+const db = require('./models');
 
 // setup port to listen on
 const PORT = process.env.PORT || 8080;
@@ -27,7 +27,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout_tracker
 });
 
 //Setup router
-const routes = require("./controller/workout_controller.js");
+const routes = require('./controller/workout_controller.js');
 app.use(routes);
 
 
