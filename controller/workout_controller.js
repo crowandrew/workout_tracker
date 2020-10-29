@@ -2,7 +2,7 @@
 const express = require("express");
 const router = express.Router();
 
-app.get("/", (req,res) => {
+router.get("/", (req,res) => {
     db.Workout.find({})
     .populate("exercises").sort({date:-1}).lean() //.lean() to make JSON object from Mongoose object
     .then(dbWorkout => {   
@@ -16,7 +16,7 @@ app.get("/", (req,res) => {
 
 })
 
-app.post("/api/exercises", ({ body }, res) => {
+router.post("/api/exercises", ({ body }, res) => {
     const newObj = {
         name: body.name,
         count: body.count,
@@ -38,7 +38,7 @@ app.post("/api/exercises", ({ body }, res) => {
         })
 })
 
-app.put("/api/exercises", (req, res) => {
+router.put("/api/exercises", (req, res) => {
   
     db.Exercise.findOneAndUpdate({_id: req.body._id}, req.body, { new: true })
 // WORKING HERE RIGHT NOW FIGURE OUT HOW TO UPDAT THE INFO ON THE FOUND INFO
@@ -53,7 +53,7 @@ app.put("/api/exercises", (req, res) => {
 
 })
 
-app.get("/populatedworkouts", (req, res) => {
+router.get("/populatedworkouts", (req, res) => {
     db.Workout.find({}).sort({date:'asc'})
         .populate("exercises")
         .then(dbWorkout => {
@@ -68,7 +68,7 @@ app.get("/populatedworkouts", (req, res) => {
 
 
 
-app.post("/api/workouts", ({ body }, res) => {
+router.post("/api/workouts", ({ body }, res) => {
 
     db.Workout.create({ name: body.name })
         .then(dbWorkout => {
@@ -85,7 +85,7 @@ app.post("/api/workouts", ({ body }, res) => {
 });
 
 
-app.delete("/api/exercises", ({ body }, res) => {
+router.delete("/api/exercises", ({ body }, res) => {
     db.Exercise.deleteOne({_id: body._id}, function(err) {
         if(err) throw err;
         console.log("successful deletion");
@@ -93,7 +93,7 @@ app.delete("/api/exercises", ({ body }, res) => {
     })
 })
 
-app.delete("/api/workouts", ({ body }, res) => {
+router.delete("/api/workouts", ({ body }, res) => {
     db.Workout.deleteOne({_id: body._id}, function(err){
         if(err) throw err;
         console.log('successful deletion');
