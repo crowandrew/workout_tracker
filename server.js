@@ -21,7 +21,7 @@ app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 
 // setup mongoose connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/fitnessdb', {
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout_trackerdb', {
     useNewUrlParser: true,
     useFindAndModify: false
 });
