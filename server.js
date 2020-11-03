@@ -1,37 +1,29 @@
-// loading express and mongoose
-const express = require('express');
-const mongoose = require('mongoose');
+const express = require("express");
+const mongoose = require("mongoose");
+const exphbs = require("express-handlebars");
 
-const db = require('./models');
 
-// setup port to listen on
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 3000
 
-// setup express
 const app = express();
+app.engine("handlebars", exphbs({ defaultLayout: "main" }));
+app.set("view engine", "handlebars");
 
-// set ejs engine
-app.set('view engine', 'ejs');
 
-// sets up the express app to handle data parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// static directory
-app.use(express.static(__dirname + '/public'));
+app.use(express.static("public"));
 
-// setup mongoose connection
-mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/workout_trackerdb', {
+const routes = require("./controller/workout_controller.js");
+app.use(routes);
+
+
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fitnessdb", {
     useNewUrlParser: true,
     useFindAndModify: false
 });
 
-//Setup router
-const routes = require('./controller/workout_controller.js');
-app.use(routes);
-
-
-// setup listener
-app.listen(PORT, function () {
-    console.log('Listening on PORT ' + PORT);
-  });
+app.listen(PORT, () => {
+    console.log(`App running on port ${PORT}!`);
+});

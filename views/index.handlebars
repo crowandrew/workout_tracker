@@ -1,7 +1,8 @@
 <div class="workout-wrapper">
 
-    <% if (workouts) { %>
-        <% workouts.forEach(function(workout){ %>
+    {{#if workouts}}
+    {{#each workouts}}
+
     <div class="workout-container" id="{{_id}}">
         <div class="workout-title" id="{{_id}}">{{name}}<button class="workout-delete" id="{{_id}}">Delete
                 Workout</button>
@@ -10,28 +11,32 @@
             <form class="new-exercise" id="{{_id}}">
                 <div class="form-group">
                     <label for="exer-name">New Exercise Name:</label>
-                    <input type="text" name="exer-name" placeholder="push-ups, eat bananas">
+                    <input type="text" name="exer-name" placeholder="push-ups, pull-ups, burpees">
                 </div>
                 <div class="form-group">
                     <label for="exer-count">Enter The Quantity and Units</label>
                     <input type="number" name="exer-count" placeholder="number">
-                    <input type="text" name="exer-count" placeholder="reps, minutes, bananas">
+                    <input type="text" name="exer-count" placeholder="reps, minutes, weight">
                 </div>
                 <div class="form-group">
                     <label for="exer-notes">Notes:</label>
-                    <input type="text" name="exer-notes" placeholder="new PR! 100 Bananas!">
+                    <input type="text" name="exer-notes" placeholder="new pr! 225 bench!">
                     <button type="submit">Submit</button>
                 </div>
             </form>
         </div>
+        {{> workout-block}}
 
     </div>
 
-    <% }); %>
-   <%} else { %>
+    {{/each}}
+    {{else}}
     <div class="work-empty-container">
         <h1>No Workouts Yet!</h1>
         <br>
-        <h3>Create a workout to start having the body you dream of!</h2>
+        <h3>Create a workout to final have your dream body!</h2>
     </div>
-    <% } %>
+    {{/if}}
+
+
+</div>

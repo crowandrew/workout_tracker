@@ -18,8 +18,9 @@
   },
   "homepage": "https://github.com/crowandrew/workout_tracker#readme",
   "dependencies": {
-    "ejs": "^3.1.5",
     "express": "^4.17.1",
+    "express-handlebars": "^5.2.0",
+    "handlebars": "^4.7.6",
     "mongoose": "^5.10.11"
   }
 }
