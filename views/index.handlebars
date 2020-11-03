@@ -1,40 +1,64 @@
-<div class="workout-wrapper">
+<div class="container">
 
     {{#if workouts}}
     {{#each workouts}}
 
-    <div class="workout-container" id="{{_id}}">
-        <div class="workout-title" id="{{_id}}">{{name}}<button class="workout-delete" id="{{_id}}">Delete
-                Workout</button>
+    <div class="card shadow-lg p-3 mb-2 bg-white rounded" id="{{_id}}">
+        <div class="row workout-title" id="{{_id}}">
+            <div class="col-md-10 text-center">
+                <h2 class="card-title">{{name}}</h2>
+            </div>
+            <div class="col-md-2">
+                <button class="workout-delete btn btn-danger" id="{{_id}}">Delete
+                    Workout</button>
+            </div>
         </div>
         <div class="exercise-entry">
-            <form class="new-exercise" id="{{_id}}">
-                <div class="form-group">
-                    <label for="exer-name">New Exercise Name:</label>
-                    <input type="text" name="exer-name" placeholder="push-ups, pull-ups, burpees">
+            <form class="new-exercise p-2" id="{{_id}}">
+                <div class="row">
+                    <div class="form-group col-md-6 row">
+                        <label class="col-md-3" for="exer-name">Exercise:</label>
+                        <input class="form-control col-md-8" type="text" name="exer-name"
+                            placeholder="DB Bench Press, DB Reverse Fly, etc.">
+                    </div>
+                    <div class="form-group col-md-6 row">
+                        <label class="col-md-6" for="exer-count">Enter Sets and Reps:</label>
+                        <input class="col-md-3 form-control" type="number" name="exer-count" placeholder="# of sets">
+                        <input class="col-md-3 form-control" type="text" name="exer-count" placeholder="reps & weight">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="exer-count">Enter The Quantity and Units</label>
-                    <input type="number" name="exer-count" placeholder="number">
-                    <input type="text" name="exer-count" placeholder="reps, minutes, weight">
-                </div>
-                <div class="form-group">
-                    <label for="exer-notes">Notes:</label>
-                    <input type="text" name="exer-notes" placeholder="new pr! 225 bench!">
-                    <button type="submit">Submit</button>
+                <div class="row">
+                    <div class="form-group col-md-12 row">
+                        <div class="col-md-10 row">
+                            <div class="col-md-2 text-right">
+                                <label for="exer-notes">Notes:</label>
+                            </div>
+                            <div class="col-md-10">
+                                <textarea class="form-control" type="text" name="exer-notes"
+                                    placeholder="Notes about this workout" rows="2"></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-success" type="submit">Submit</button>
+                        </div>
+                    </div>
                 </div>
             </form>
         </div>
-        {{> workout-block}}
+        <div class="d-flex flex-wrap justify-content-around">
+            {{> workout-block}}
+        </div>
+
 
     </div>
 
     {{/each}}
     {{else}}
-    <div class="work-empty-container">
-        <h2>You need to enter a workout.</h2>
+    <div class="card text-center">
+        <div class="card-body"></div>
+        <h3 class="card-title">No workouts entered.</h3>
         <br>
-        <h3>Create a workout to final have your dream body!</h2>
+        <p class="card-text">Create a workout to finally have your dream body!</p>
     </div>
     {{/if}}
 

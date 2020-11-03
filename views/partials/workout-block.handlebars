@@ -1,17 +1,17 @@
 {{#if exercises}}
 
 {{#each exercises}}
-<div class="exercise-container" id="{{_id}}">
+<div class="exercise-container shadow-lg card p-2 mb-2 bg-white rounded" id="{{_id}}" style="width: 18rem;">
     <form class="update-form" id="{{_id}}">
 
-        <input type="text" class="exercise-name" value="{{name}}">
-        <p class="exercise-count">Repeat for <input type="number" value="{{count}}" name="count"> <input type="text"
-                value="{{unit}}" name="unit"></p>
+        <input type="text" class="exercise-name form-control" value="{{name}}">
+        <p class="exercise-count">Repeat for <input type="number" class="form-control" value="{{count}}" name="count">
+            <input class="form-control" type="text" value="{{unit}}" name="unit"></p>
         {{!-- <input class="exercise-count" value="Repeat for {{count}} {{unit}}!"> --}}
-        <textarea class="exercise-notes" value="{{notes}}" rows="5" cols="25">{{notes}}</textarea>
+        <textarea class="exercise-notes form-control" value="{{notes}}" rows="5" cols="25">{{notes}}</textarea>
         <div class="exer-buttons">
-            <button type="submit">Update!</button>
-            <button class="exer-delete" id="{{_id}}">Delete</button>
+            <button class="btn btn-success" type="submit">Update!</button>
+            <button class="exer-delete btn btn-danger" id="{{_id}}">Delete</button>
         </div>
     </form>
 </div>
